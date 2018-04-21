@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title></title>
+  <title>Christmas Gifs</title>
   <!-- My CSS -->
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <!-- Ajax -->
@@ -19,10 +19,27 @@
 </head>
 <body>
   
-<div id="buttons"></div>
-<div id="searchbar"></div>
-<div id="rating"></div>
-<div id="gifs"></div>
+<div id="wrapper">
+
+  <div class="container">
+    <h1>Christmas Gifs</h1>
+
+<div id="music"></div>
+
+    <div id="btns"></div>
+<div style="float: right;">
+    <form id="newGif-form">
+      <label for="gifPlaceholder">Add a Christmas theme</label>
+      <input type="text" id="gifPlaceholder">
+      <br>
+
+      <input id="loadGif" type="submit" value="Submit">
+    </form>
+  </div>
+
+      <div id="theGifs"></div>
+
+</div>
 
 </body>
 </html>

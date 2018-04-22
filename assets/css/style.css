@@ -20,16 +20,37 @@ h1 {
 button, input {
     background: linear-gradient(to right, #FF0000 0%, #FFFFF0 40%,#008000 80% )
 }
-p,label {
+p,label,a {
     background: -webkit-linear-gradient(#008000 0%, #FF0000 40%, #FFFFF0 50%,#008000 55%);
 }
-p {
+p,a {
     font-size: 30px;
 }
 label {
     font-size: 20px;
 }
-h1,p,label {
+h1,p,label,a {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+#gifSpace{
+    margin-top: 8%;
+}
+@media only screen and (max-width: 1440){
+    #gifSpace{
+        margin-top: 13%;
+    }
+}
+@media only screen and (max-width: 786px){
+    #gifSpace{
+        margin-top: 18%;
+    }
+}
+@media only screen and (max-width: 425px){
+    #gifSpace{
+        margin-top: 8%;
+    }
+}
+a {
+    text-decoration: none;
 }

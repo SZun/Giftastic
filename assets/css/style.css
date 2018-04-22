@@ -18,13 +18,14 @@ h1 {
     position: absolute;
 }
 button, input {
-    background: linear-gradient(to right, #FF0000 0%, #FFFFF0 40%,#008000 80% )
+    background: linear-gradient(to right, #FF0000 0%, #FFFFF0 5%,#FF0000 10%, #FFFFF0 15%,#FF0000 20%, #FFFFF0 25%,#FF0000 30%, #FFFFF0 35%,#FF0000 40%, #FFFFF0 45%,#FF0000 50%, #FFFFF0 55%,#FF0000 60%, #FFFFF0 65%,#FF0000 70%, #FFFFF0 75%,#FF0000 80%, #FFFFF0 85%,#FF0000 90%, #FFFFF0 95%,#FF0000 100%)
 }
 p,label,a {
     background: -webkit-linear-gradient(#008000 0%, #FF0000 40%, #FFFFF0 50%,#008000 55%);
 }
 p,a {
     font-size: 30px;
+    margin-bottom: 0;
 }
 label {
     font-size: 20px;

@@ -5,6 +5,7 @@ $(document).ready(function(){
     audio = new Audio(audio)
     audio.play();
     var limit = 10
+    var thingy = String
 
 var theGifs = ['Christmas','Navidad','Santa','Christmas Tree','Rudolph Reindeer','Christmas Lights','Grinch','Christmas Dinner','Elfs','Mrs Claus','Presents','Frosty The Snowman','Krampus','Fireplace', 'Christmas Stockings','Candy Cane','Scrooge','Belsnickel','Christmas Movies','Christmas Music','Ded Moroz'];
 
@@ -24,7 +25,6 @@ for (var i = 0; i < limit; i++){
     var rating = response.data[i].rating;
     var ratingPElement = $("<p>").text("Rating: "+rating);
     gifDiv.append(ratingPElement);
-    
     var source = response.data[i].source_tld;
     var sourceElement = $("<div>").html("<a href="+"https://"+source+" target='_blank'>Source Link!!</a>");
     gifDiv.append(sourceElement);

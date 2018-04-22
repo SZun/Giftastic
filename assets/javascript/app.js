@@ -18,28 +18,31 @@ function display() {
   }).then(function(response) {
 
   $(".gif").empty();
-
-for (var i = 0; i < queryURL.length; i++){
+for (var i = 0; i < 10; i++){
+   if(response.data[i].rating != 'r' && response.data[i].rating != 'pg-13'){
     var gifDiv = $("<div class='gif'>").css('float','left');
     var rating = response.data[i].rating;
-    var pOne = $("<p>").text("Rating: "+rating);
-    gifDiv.append(pOne);
+    var ratingPElement = $("<p>").text("Rating: "+rating);
+    gifDiv.append(ratingPElement);
     let gifURL = response.data[i].images.fixed_height_still.url;
-    let gif = $("<img>").attr("src", gifURL);
+    let gif = $("<img>").attr("src", gifURL).addClass('imStill');
     gifDiv.append(gif);
-    // document.getElementsByTagName('<img>').onclick = function(){
-    //   $("<img>").empty();
-    //   let gifURL = response.data.gifs.fixed_height.url;
-    //   let gif = $("<img>").attr("src", gifURL);
-    //   gifDiv.append(gif)
-    // }
-    // Putting the entire newGif above the previous theGifs
-    $("#theGifs").prepend(gifDiv);
-}
-gif.getElementsByTagName('<img>').onclick = function(){
-console.log("you clicked me!")
-let gifURL = response.data[i].images.fixed_height.url;
-$("<img>").attr("src",gifURL)
+    $("#gifSpace").prepend(gifDiv);
+    $(".imStill").on("click", function(){
+      for (var i = 0; i < 10; i++){ 
+        if ($(this).hasClass('imStill')){
+            console.log(response.data[i].images.fixed_height.url)
+            // var movingGif = response.data[i].images.fixed_height.url;
+            // $(this).attr("src", movingGif)
+            $(this).removeClass("imStill").addClass("imAnimated")
+          }
+          // else{
+          //   $(this).attr("src",gifURL)
+          //   $(this).removeClass("imAnimated").addClass("imStill")
+          // }
+      }  
+    })
+  }
 }
   });
 

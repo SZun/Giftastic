@@ -12,8 +12,6 @@ button, div, form, input {
 h1 {
   font-size: 72px;
   background: -webkit-linear-gradient(#FF0000 40%, #FFFFF0 50%,#008000 60%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   text-align: center;
 }
 #wrapper{
@@ -24,12 +22,14 @@ button, input {
 }
 p,label {
     background: -webkit-linear-gradient(#008000 0%, #FF0000 40%, #FFFFF0 50%,#008000 55%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 p {
     font-size: 30px;
 }
 label {
     font-size: 20px;
+}
+h1,p,label {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }

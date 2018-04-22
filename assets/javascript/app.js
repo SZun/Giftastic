@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    var audio = ['../Giftastic/assets/images/christmas.mp4','../Giftastic/assets/images/white_christmas.mp4','../Giftastic/assets/images/let_it_snow.mp4','../Giftastic/assets/images/holly_jolly.mp4','../Giftastic/assets/images/navidad.mp4']
+    var audio = ['../Giftastic/assets/images/christmas.mp4','../Giftastic/assets/images/white_christmas.mp4','../Giftastic/assets/images/let_it_snow.mp4','../Giftastic/assets/images/holly_jolly.mp4','../Giftastic/assets/images/navidad.mp4','../Giftastic/assets/images/santa.mp4']
     audio = audio[Math.floor(Math.random() * audio.length)]
     audio = new Audio(audio)
     // audio.play();
@@ -29,13 +29,9 @@ for (var i = 0; i < 10; i++){
     gifDiv.append(gif);
     $("#gifSpace").prepend(gifDiv);
     $(".imStill" || ".imAnimated").on("click", function(){
-      // for (var i = 0; i < 10; i++){ 
-      //   var movingGif = response.data[i].images.fixed_height.url;
-      //   var gifURL = response.data[i].images.fixed_height_still.url;
         if ($(this).hasClass("imStill")){
           for (var i = 0; i < 10; i++){ 
-            // console.log(response.data[i].images.fixed_height.url)
-            var movingGif = response.data[i].images.fixed_height.url;
+            var movingGif = response.data[1].images.fixed_height.url;
             $(this).attr("src", movingGif)
             $(this).removeClass("imStill");
             $(this).addClass("imAnimated");
@@ -45,11 +41,10 @@ for (var i = 0; i < 10; i++){
             for (var i = 0; i < 10; i++){ 
             $(this).removeClass("imAnimated");
             $(this).addClass("imStill");
-            var gifURL = response.data[i].images.fixed_height_still.url;
+            var gifURL = response.data[1].images.fixed_height_still.url;
             $(this).attr("src",gifURL)
-            }
           }
-      // }  
+      }  
     })
   }
 }

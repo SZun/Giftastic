@@ -26,6 +26,7 @@ p,label,a {
 p,a {
     font-size: 30px;
     margin-bottom: 0;
+    margin-top: 0;
 }
 label {
     font-size: 20px;
@@ -54,4 +55,11 @@ h1,p,label,a {
 }
 a {
     text-decoration: none;
+}
+button,input{
+    font-weight: bold;
+}
+.moveIt{
+    margin-top: -5px;
+    margin-left: 2px;
 }

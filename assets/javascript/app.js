@@ -3,7 +3,7 @@ $(document).ready(function(){
     var audio = ['../Giftastic/assets/images/christmas.mp4','../Giftastic/assets/images/white_christmas.mp4','../Giftastic/assets/images/let_it_snow.mp4','../Giftastic/assets/images/holly_jolly.mp4','../Giftastic/assets/images/navidad.mp4','../Giftastic/assets/images/santa.mp4']
     audio = audio[Math.floor(Math.random() * audio.length)]
     audio = new Audio(audio)
-    // audio.play();
+    audio.play();
     var limit = 10
     var thingy = String
 

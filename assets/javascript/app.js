@@ -12,7 +12,7 @@ var theGifs = ['Christmas','Navidad','Santa','Christmas Tree','Rudolph Reindeer'
 function display() {
 var apiKey = '9RsoHb5hiRrXeoIELy3wuORx8T83KmFk';
 var newGif = $(this).attr("data-name");
-var queryURL = "http://api.giphy.com/v1/gifs/search?q="+newGif+"&api_key="+apiKey+"&limit=10"+limit+"" ;
+var queryURL = "https://api.giphy.com/v1/gifs/search?q="+newGif+"&api_key="+apiKey+"&limit=10"+limit+"" ;
 
 $.ajax({
   url: queryURL,

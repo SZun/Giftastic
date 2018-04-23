@@ -58,8 +58,16 @@ a {
 }
 button,input{
     font-weight: bold;
+    color: #008000;
 }
 .moveIt{
     margin-top: -5px;
     margin-left: 2px;
+}
+.btn-Input{
+    background: #FFFFF0;
+}
+img{
+    border-style: dashed ;
+    border-color: red green;
 }

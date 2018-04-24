@@ -33,18 +33,12 @@ for (var i = 0; i < limit; i++){
 
   var gifURLStill = response.data[i].images.fixed_height_still.url;
   var gifURLAnimated = response.data[i].images.fixed_height.url;
-
   var gif = $("<img>").attr("data-still", gifURLStill).addClass('myGifs').attr("data-animate",gifURLAnimated).attr("src",gifURLStill).attr("data-state","still");
-
   gifDiv.append(gif);
-
   $("#gifSpace").prepend(gifDiv);
   }
-
   $(".myGifs").on("click", function() {
-
     var state = $(this).attr('data-state');
-   
     if (state === 'still') {
       $(this).attr('src', $(this).attr('data-animate'));
       $(this).attr('data-state', 'animate');
@@ -53,8 +47,6 @@ for (var i = 0; i < limit; i++){
       $(this).attr('data-state', 'still');
     }   
     })
-
-    
   });
 }
 
@@ -67,7 +59,7 @@ for (var i = 0; i < theGifs.length; i++) {
   adder.attr("data-name", theGifs[i]);
   adder.text(theGifs[i]);
   $("#btns").append(adder);
-}
+  }
 }
 
 $("#loadGif").on("click", function(event) {

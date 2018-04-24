@@ -4,7 +4,7 @@ $(document).ready(function(){
   var audio = ['../Giftastic/assets/images/christmas.mp4','../Giftastic/assets/images/white_christmas.mp4','../Giftastic/assets/images/let_it_snow.mp4','../Giftastic/assets/images/holly_jolly.mp4','../Giftastic/assets/images/navidad.mp4','../Giftastic/assets/images/santa.mp4']
   audio = audio[Math.floor(Math.random() * audio.length)]
   audio = new Audio(audio)
-  audio.play();
+  // audio.play();
   var limit = 10
 
 var theGifs = ['Christmas','Navidad','Santa','Christmas Tree','Rudolph Reindeer','Christmas Lights','Grinch','Christmas Dinner','Elfs','Mrs Claus','Presents','Frosty The Snowman','Krampus','Fireplace', 'Christmas Stockings','Candy Cane','Scrooge','Belsnickel','Christmas Movies','Christmas Music','Ded Moroz'];
@@ -19,7 +19,6 @@ $.ajax({
   method: "GET"
 }).then(function(response) {
 $(".gif").empty();
-
 for (var i = 0; i < limit; i++){
   var gifDiv = $("<div class='gif'>").css('float','left');
   var rating = response.data[i].rating;
@@ -49,15 +48,15 @@ for (var i = 0; i < limit; i++){
     if (state === 'still') {
       $(this).attr('src', $(this).attr('data-animate'));
       $(this).attr('data-state', 'animate');
-    } else if (state === 'animate'){
+    } else {
       $(this).attr('src', $(this).attr('data-still'));
       $(this).attr('data-state', 'still');
     }   
     })
+
     
   });
 }
-
 
 function makeButton() {
 $("#btns").empty();

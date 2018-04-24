@@ -19,6 +19,7 @@ $.ajax({
   method: "GET"
 }).then(function(response) {
 $(".gif").empty();
+
 for (var i = 0; i < limit; i++){
   var gifDiv = $("<div class='gif'>").css('float','left');
   var rating = response.data[i].rating;
@@ -31,45 +32,32 @@ for (var i = 0; i < limit; i++){
   var sourceElement = $("<div>").addClass('moveIt').html("<a href="+"https://"+source+" target='_blank'>Source Link!!</a>");
   gifDiv.append(sourceElement);
 
-  let gifURL = response.data[i].images.fixed_height_still.url;
+  var gifURLStill = response.data[i].images.fixed_height_still.url;
+  var gifURLAnimated = response.data[i].images.fixed_height.url;
 
-  var gif = $("<img>").attr("src", gifURL).addClass('imStill');
+  var gif = $("<img>").attr("data-still", gifURLStill).addClass('myGifs').attr("data-animate",gifURLAnimated).attr("src",gifURLStill).attr("data-state","still");
 
   gifDiv.append(gif);
 
   $("#gifSpace").prepend(gifDiv);
+  }
 
+  $(".myGifs").on("click", function() {
 
-  $(".imStill" || ".imAnimated").on("click", function(){
+    var state = $(this).attr('data-state');
+   
+    if (state === 'still') {
+      $(this).attr('src', $(this).attr('data-animate'));
+      $(this).attr('data-state', 'animate');
+    } else if (state === 'animate'){
+      $(this).attr('src', $(this).attr('data-still'));
+      $(this).attr('data-state', 'still');
+    }   
+    })
     
-      if ($(this).hasClass("imStill")){
-        
-        for (var i = 0; i < 10; i++){ 
-
-          var movingGif = response.data[i].images.fixed_height.url;
-
-          $(this).attr("src", movingGif)
-
-          $(this).removeClass("imStill");
-
-          $(this).addClass("imAnimated");
-          }
-        }
-        else if($(this).hasClass("imAnimated")){
-          for (var i = 0; i < 10; i++){ 
-          $(this).removeClass("imAnimated");
-
-          $(this).addClass("imStill");
-
-          var gifURL = response.data[i].images.fixed_height_still.url;
-
-          $(this).attr("src", gifURL)
-            }
-          }  
-        })
-      }
-    });
+  });
 }
+
 
 function makeButton() {
 $("#btns").empty();

@@ -7,7 +7,7 @@ $(document).ready(function(){
   audio.play();
   var limit = 10
 
-var theGifs = ['Christmas','Navidad','Santa','Christmas Tree','Rudolph Reindeer','Christmas Lights','Grinch','Christmas Dinner','Elfs','Mrs Claus','Presents','Frosty The Snowman','Krampus','Fireplace', 'Christmas Stockings','Candy Cane','Scrooge','Belsnickel','Christmas Movies','Christmas Music','Ded Moroz'];
+var topics = ['Christmas','Navidad','Santa','Christmas Tree','Rudolph Reindeer','Christmas Lights','Grinch','Christmas Dinner','Elfs','Mrs Claus','Presents','Frosty The Snowman','Krampus','Fireplace', 'Christmas Stockings','Candy Cane','Scrooge','Belsnickel','Christmas Movies','Christmas Music','Ded Moroz'];
 
 function display() {
 var apiKey = '9RsoHb5hiRrXeoIELy3wuORx8T83KmFk';
@@ -61,11 +61,11 @@ for (var i = 0; i < limit; i++){
 function makeButton() {
 $("#btns").empty();
 
-for (var i = 0; i < theGifs.length; i++) {
+for (var i = 0; i < topics.length; i++) {
   var adder = $("<button>");
   adder.addClass("christmasBtn");
-  adder.attr("data-name", theGifs[i]);
-  adder.text(theGifs[i]);
+  adder.attr("data-name", topics[i]);
+  adder.text(topics[i]);
   $("#btns").append(adder);
   }
 }
@@ -73,7 +73,7 @@ for (var i = 0; i < theGifs.length; i++) {
 $("#loadGif").on("click", function(event) {
 event.preventDefault();
 var newGif = $("#gifPlaceholder").val().trim();
-theGifs.push(newGif);
+topics.push(newGif);
 makeButton();
 });
 

@@ -1,82 +1,125 @@
+const apiKey = "9RsoHb5hiRrXeoIELy3wuORx8T83KmFk";
+let topics = [
+  "Christmas",
+  "Navidad",
+  "Santa",
+  "Christmas Tree",
+  "Rudolph Reindeer",
+  "Christmas Lights",
+  "Grinch",
+  "Christmas Dinner",
+  "Elfs",
+  "Mrs Claus",
+  "Presents",
+  "Frosty The Snowman",
+  "Krampus",
+  "Fireplace",
+  "Christmas Stockings",
+  "Candy Cane",
+  "Scrooge",
+  "Belsnickel",
+  "Christmas Movies",
+  "Christmas Music",
+  "Ded Moroz",
+];
 
-$(document).ready(function(){
+let audio = [
+  "./assets/images/christmas.mp4",
+  "./assets/images/white_christmas.mp4",
+  "./assets/images/let_it_snow.mp4",
+  "./assets/images/holly_jolly.mp4",
+  "./assets/images/navidad.mp4",
+  "./assets/images/santa.mp4",
+];
+audio = audio[Math.floor(Math.random() * audio.length)];
+audio = new Audio(audio);
 
-  var audio = ['./assets/images/christmas.mp4','./assets/images/white_christmas.mp4','./assets/images/let_it_snow.mp4','./assets/images/holly_jolly.mp4','./assets/images/navidad.mp4','./assets/images/santa.mp4']
-  audio = audio[Math.floor(Math.random() * audio.length)]
-  audio = new Audio(audio)
-  audio.play();
-  var limit = 10
+function toggleAnimatedGif() {
+  if ($(this).attr("data-state") === "still") {
+    $(this).attr("src", $(this).attr("data-animate"));
+    $(this).attr("data-state", "animate");
+  } else {
+    $(this).attr("src", $(this).attr("data-still"));
+    $(this).attr("data-state", "still");
+  }
+}
 
-var topics = ['Christmas','Navidad','Santa','Christmas Tree','Rudolph Reindeer','Christmas Lights','Grinch','Christmas Dinner','Elfs','Mrs Claus','Presents','Frosty The Snowman','Krampus','Fireplace', 'Christmas Stockings','Candy Cane','Scrooge','Belsnickel','Christmas Movies','Christmas Music','Ded Moroz'];
+const displayGifContent = ({ rating, type, source_tld }) => {
+  const gifDiv = $("<div class='gif'>").css("float", "left");
+  const ratingPElement = $("<p>").text(`Rating: ${rating}`);
+  const typePElement = $("<p>").text(`Type: ${type}`);
 
-function display() {
-var apiKey = '9RsoHb5hiRrXeoIELy3wuORx8T83KmFk';
-var newGif = $(this).attr("data-name");
-var queryURL = "https://api.giphy.com/v1/gifs/search?q="+newGif+"&api_key="+apiKey+"&limit=10"+limit+"" ;
-
-$.ajax({
-  url: queryURL,
-  method: "GET"
-}).then(function(response) {
-$(".gif").empty();
-for (var i = 0; i < limit; i++){
-  var gifDiv = $("<div class='gif'>").css('float','left');
-  var rating = response.data[i].rating;
-  var ratingPElement = $("<p>").text("Rating: "+rating);
   gifDiv.append(ratingPElement);
-  var type = response.data[i].type;
-  var typePElement = $("<p>").text("Type: "+type);
   gifDiv.append(typePElement);
-  var source = response.data[i].source_tld;
-  var sourceElement = $("<div>").addClass('moveIt').html("<a href="+"https://"+source+" target='_blank'>Source Link!!</a>");
-  gifDiv.append(sourceElement);
+  gifDiv.append(
+    `<div class="moveIt"><a href="https://${source_tld}" target='_blank'>Source Link!!</a></div>`
+  );
 
-  var gifURLStill = response.data[i].images.fixed_height_still.url;
-  var gifURLAnimated = response.data[i].images.fixed_height.url;
+  return gifDiv;
+};
 
-  var gif = $("<img>").attr("data-still", gifURLStill).addClass('myGifs').attr("data-animate",gifURLAnimated).attr("src",gifURLStill).attr("data-state","still");
+const getGif = (images) => {
+  const gifURLStill = images.fixed_height_still.url;
+  const gifURLAnimated = images.fixed_height.url;
 
-  gifDiv.append(gif);
+  const gif = $("<img>")
+    .attr("data-still", gifURLStill)
+    .addClass("myGifs")
+    .attr("data-animate", gifURLAnimated)
+    .attr("src", gifURLStill)
+    .attr("data-state", "still");
 
-  $("#gifSpace").prepend(gifDiv);
+  return gif;
+};
+
+async function display() {
+  var newGif = $(this).attr("data-name");
+
+  try {
+    const response = await $.ajax({
+      url: `https://api.giphy.com/v1/gifs/search?q=${newGif}&api_key=${apiKey}&limit=${10}`,
+      method: "GET",
+    });
+
+    $(".gif").empty();
+
+    response.data.forEach((i) => {
+      let gifDiv = displayGifContent(i);
+      const gif = getGif(i.images);
+
+      gifDiv.append(gif);
+      $("#gifSpace").prepend(gifDiv);
+    });
+
+    $(".myGifs").click(toggleAnimatedGif);
+  } catch (ex) {
+    console.log(ex);
   }
-
-  $(".myGifs").on("click", function() {
-
-    var state = $(this).attr('data-state');
-   
-    if (state === 'still') {
-      $(this).attr('src', $(this).attr('data-animate'));
-      $(this).attr('data-state', 'animate');
-    } else {
-      $(this).attr('src', $(this).attr('data-still'));
-      $(this).attr('data-state', 'still');
-    }   
-    })
-
-    
-  });
 }
 
-function makeButton() {
-$("#btns").empty();
+const displayButtons = () => {
+  $("#btns").empty();
 
-for (var i = 0; i < topics.length; i++) {
-  var adder = $("<button>");
-  adder.addClass("christmasBtn");
-  adder.attr("data-name", topics[i]);
-  adder.text(topics[i]);
-  $("#btns").append(adder);
+  for (var i = 0; i < topics.length; i++) {
+    const btn = $("<button>")
+      .addClass("christmasBtn")
+      .attr("data-name", topics[i])
+      .text(topics[i]);
+    $("#btns").append(btn);
   }
-}
+};
 
-$("#loadGif").on("click", function(event) {
-event.preventDefault();
-var newGif = $("#gifPlaceholder").val().trim();
-topics.push(newGif);
-makeButton();
-});
+const loadGif = (event) => {
+  event.preventDefault();
+  topics.push($("#gifPlaceholder").val().trim());
+  displayButtons();
+};
 
-$(document).on("click", ".christmasBtn", display);
-makeButton();
-})
+const main = () => {
+  displayButtons();
+  $(document).on("click", ".christmasBtn", display);
+  $(document).click(() => audio.play());
+  $("#loadGif").click((event) => loadGif(event));
+};
+
+main();
